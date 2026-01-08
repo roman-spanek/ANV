@@ -1,0 +1,69 @@
+--------------------------------------------------------------------------------------------
+1. ČÁST 1 – CODE REVIEW A REFACTORING
+--------------------------------------------------------------------------------------------
+Níže je ukázka produkčního kódu, který porušuje základní principy čistého kódu.
+   Vaším úkolem je:
+   Identifikovat problémy v návrhu
+   Navrhnout refaktorované řešení
+   Použít vhodné návrhové vzory
+   Vysvětlit proč byly vzory použity
+
+class OrderManager {
+
+    public void processOrder(int type, double amount, boolean vip, String output) {
+
+        double finalAmount = amount;
+
+        if (vip) {
+            finalAmount = amount * 0.9;
+        }
+
+        if (type == 1) {
+            System.out.println("Processing online order");
+            if (output.equals("PDF")) {
+                System.out.println("Generating PDF invoice");
+            } else if (output.equals("EMAIL")) {
+                System.out.println("Sending invoice by email");
+            }
+        } else if (type == 2) {
+            System.out.println("Processing store order");
+            System.out.println("Printing invoice");
+        }
+
+        System.out.println("Final price: " + finalAmount);
+    }
+}
+
+
+CO ODEVZDAT:
+ukázku refaktorovaného kódu (kostra tříd)
+seznam problémů
+seznam použitých vzorů
+
+--------------------------------------------------------------------------------------------
+ČÁST 2 – NÁVRH ARCHITEKTURY PODLE ZADÁNÍ
+--------------------------------------------------------------------------------------------
+
+Navrhněte základní strukturu softwaru pro Systém pro správu notifikací
+
+Systém musí podporovat:
+    různé typy notifikací (Email, SMS, Push)
+    různé kanály doručení
+    možnost přidání nového typu notifikace bez úprav existujícího kódu
+    logování a audit
+    možnost dočasného vypnutí notifikací
+    testovatelnost jednotlivých částí
+
+
+POŽADAVKY NA NÁVRH
+    návrh musí respektovat SOLID
+    žádná třída nesmí mít více odpovědností
+    žádné if/else na typ notifikace
+    systém musí být otevřený rozšíření, uzavřený změnám
+
+--------------------------------------------------------------------------------------------
+ČÁST 3 – TEORETICKÉ OTÁZKY
+--------------------------------------------------------------------------------------------
+
+1. Vysvětlete principy SOLID a uveďte příklady jejich aplikace v návrhu softwaru.
+2. Jaké znáte anipatterny návrhu? Napište alespoň tři a vysvětlete, proč jsou problematické.
