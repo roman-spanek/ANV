@@ -1,0 +1,86 @@
+--------------------------------------------------------------------------------------------
+1. ČÁST 1 – CODE REVIEW A REFACTORING
+--------------------------------------------------------------------------------------------
+Níže je ukázka produkčního kódu, který porušuje základní principy čistého kódu.
+   Vaším úkolem je:
+   Identifikovat problémy v návrhu
+   Navrhnout refaktorované řešení
+   Použít vhodné návrhové vzory
+   Vysvětlit proč byly vzory použity
+
+public class ReportService {
+
+    public void generateReport(String type, String format, boolean admin, boolean archive) {
+        if (admin) {
+            System.out.println("Including confidential data");
+            if (type.equals("FINANCE")) {
+                System.out.println("Collecting finance data");
+            } else if (type.equals("HR")) {
+                System.out.println("Collecting HR data");
+            } else {
+                System.out.println("Unknown report type");
+                return;
+            }
+        }else{
+            if (type.equals("FINANCE")) {
+                System.out.println("Collecting finance data");
+            } else if (type.equals("HR")) {
+                System.out.println("Collecting HR data");
+            } else {
+                System.out.println("Unknown report type");
+                return;
+            }
+        }
+
+        if (format.equals("PDF")) {
+            System.out.println("Exporting report as PDF");
+        } else if (format.equals("CSV")) {
+            System.out.println("Exporting report as CSV");
+        } else if (format.equals("XML")) {
+            System.out.println("Exporting report as XML");
+        }
+
+        if (archive) {
+            System.out.println("Saving report to archive");
+        }
+    }
+}
+
+
+
+CO ODEVZDAT:
+ukázku refaktorovaného kódu (kostra tříd)
+seznam problémů
+seznam použitých vzorů
+použijte vhodné návrhové vzory (bez použití Strategy a Decorator)
+
+--------------------------------------------------------------------------------------------
+ČÁST 2 – NÁVRH ARCHITEKTURY PODLE ZADÁNÍ
+--------------------------------------------------------------------------------------------
+
+Navrhněte základní architekturu softwaru pro systém správy přístupových práv ve firemní aplikaci.
+Systém musí:
+    podporovat různé typy uživatelů (např. Admin, Manager, Employee)
+    umožňovat přidávání nových typů oprávnění
+    umožňovat dočasné zablokování přístupu
+    zaznamenávat auditní záznamy o změnách
+    umožňovat snadné testování jednotlivých částí
+
+POŽADAVKY NA NÁVRH:
+    návrh musí být v souladu se SOLID
+    žádná třída nesmí mít více odpovědností
+    žádné if/else nebo switch podle typu uživatele
+
+    systém musí být:
+        otevřený rozšíření
+        uzavřený změnám
+    preferujte kompozici před dědičností
+
+
+--------------------------------------------------------------------------------------------
+ČÁST 3 – TEORETICKÉ OTÁZKY
+--------------------------------------------------------------------------------------------
+
+1. Vysvětlete princip Open/Closed Principle a uveďte konkrétní příklad z praxe.
+2. Co je to KISS, YAGNI a DRY v kontextu softwarového vývoje?
+
